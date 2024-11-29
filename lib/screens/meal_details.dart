@@ -3,15 +3,18 @@ import 'package:meals_app/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-  MealDetailsScreen({super.key, required this.meal});
+  MealDetailsScreen({super.key, required this.meal, required this.onToggleFavorite});
 
   final Meal meal;
-
+  final Function(Meal meal) onToggleFavorite;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
+        actions: [
+          IconButton(onPressed: onToggleFavorite(meal), icon:Icon(Icons.star))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
